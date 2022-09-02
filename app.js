@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -11,7 +13,7 @@ var catalogRouter = require('./routes/catalog');
 
 var app = express();
 const mongoose = require('mongoose');
-const mongoDB = `mongodb+srv://atoye1:${passwd}@sharedcluster0.jhgrh.mongodb.net/?retryWrites=true&w=majority`;
+const mongoDB = process.env.MONGO_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
